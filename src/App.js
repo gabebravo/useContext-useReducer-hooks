@@ -1,26 +1,25 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Switch, BrowserRouter as Router, Route } from 'react-router-dom';
+
+// components
+import Home from './views/Home';
+import Page1 from './views/Page1';
+import Page2 from './views/Page2';
+import Page3 from './views/Page3';
+import NotFound from './views/NotFound';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Router>
+        <Switch>
+          <Route exact path='/' component={Home} />
+          <Route path='/page1' component={Page1} />
+          <Route path='/page2' component={Page2} />
+          <Route path='/page3' component={Page3} />
+          <Route component={NotFound}/>
+        </Switch>
+      </Router>
     );
   }
 }
