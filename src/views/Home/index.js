@@ -2,16 +2,16 @@ import React from 'react'
 import styled from 'styled-components'
 import { withRouter } from 'react-router-dom'
 
-function Home() {
+function Home({ history }) {
   return (
     <>
       <HomeWrapper>
         Home
       </HomeWrapper>
       <ButtonWrapper>
-        <button onClick={() => props.history.push('/page1')}>Page1</button>
-        <button onClick={() => props.history.push('/page2')}>Page2</button>
-        <button onClick={() => props.history.push('/page3')}>Page3</button>
+        <button onClick={() => history.push('/page1')}>Page1</button>
+        <button onClick={() => history.push('/page2')}>Page2</button>
+        <button onClick={() => history.push('/page3')}>Page3</button>
       </ButtonWrapper>
     </>
   )

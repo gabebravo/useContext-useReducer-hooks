@@ -1,4 +1,5 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useContext, useState } from 'react'
+import { GlobalContext } from '../../context'
 import styled from 'styled-components'
 import Count1 from './components/Count1'
 import Count2 from './components/Count2'
@@ -7,22 +8,24 @@ import Count3 from './components/Count3'
 // make a new context
 export const Page2Context = createContext({ count: 0 });
 
-export default function Page2() {
+export default function Page2({ history }) {
   const [count, setCount] = useState(0)
+  const globalReducer = useContext(GlobalContext);
+  const { state, dispatch } = globalReducer;
   
   return (
     <>
       <NavWrapper>
-        <button onClick={() => props.history.push('/')}>Home</button>
-        <button onClick={() => props.history.push('/page1')}>Page1</button>
-        <button onClick={() => props.history.push('/page3')}>Page3</button>
+        <button onClick={() => history.push('/')}>Home</button>
+        <button onClick={() => history.push('/page1')}>Page1</button>
+        <button onClick={() => history.push('/page3')}>Page3</button>
       </NavWrapper>
       <Page1Wrapper>
-        <p>{`Page 2 - global state: 0`}</p>
+        <p>{`Page 2 - global state: ${state.count}`}</p>
       </Page1Wrapper>
       <ButtonWrapper>
-        <button>Inc Global</button>
-        <button>Dec Global</button>
+        <button onClick={() => dispatch({ type: 'INC', payload: state.count + 1 })}>Inc Global</button>
+        <button onClick={() => dispatch({ type: 'DEC', payload: state.count - 1 })}>Dec Global</button>
       </ButtonWrapper>
       <CountWrapper>
         <Page2Context.Provider value={{ count, setCount }}>

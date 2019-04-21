@@ -1,14 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
 
-export default function NotFound() {
+export default function NotFound({ history }) {
   return (
     <>
        <NavWrapper>
-        <button onClick={() => props.history.push('/')}>Home</button>
-        <button onClick={() => props.history.push('/page1')}>Page1</button>
-        <button onClick={() => props.history.push('/page2')}>Page2</button>
-        <button onClick={() => props.history.push('/page3')}>Page3</button>
+        <button onClick={() => history.push('/')}>Home</button>
+        <button onClick={() => history.push('/page1')}>Page1</button>
+        <button onClick={() => history.push('/page2')}>Page2</button>
+        <button onClick={() => history.push('/page3')}>Page3</button>
       </NavWrapper>
       <NotFoundWrapper>
         Page Not Found...

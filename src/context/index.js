@@ -1,7 +1,8 @@
 import React from 'react'
+const DEFAULT_STATE = { count: 0 }
 
 /// _____ GLOBAL CONTEXT FOR REDUCER ____________________
-export const GlobalContext = React.createContext({ count: 0 })
+export const GlobalContext = React.createContext(DEFAULT_STATE)
 
 /// __________________ GLOBAL REDUCER ____________________
 export function globalReducer(state, action) {
@@ -9,13 +10,13 @@ export function globalReducer(state, action) {
 
 switch(type){
     case 'INC': {
-      return state
+      return { count: payload }
     }
     case 'DEC': {
-      return state
+      return { count: payload }
     }
     case 'RESET': {
-      return state
+      return DEFAULT_STATE
     }
     default: 
       return state;

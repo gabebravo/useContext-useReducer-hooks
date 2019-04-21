@@ -8,7 +8,7 @@ import Count3 from './components/Count3'
 // make a new context
 export const Page1Context = createContext({ count: 0 });
 
-export default function Page1() {
+export default function Page1({ history }) {
   const [count, setCount] = useState(0)
   const globalReducer = useContext(GlobalContext);
   const { state, dispatch } = globalReducer;
@@ -16,16 +16,16 @@ export default function Page1() {
   return (
     <>
       <NavWrapper>
-        <button onClick={() => props.history.push('/')}>Home</button>
-        <button onClick={() => props.history.push('/page2')}>Page2</button>
-        <button onClick={() => props.history.push('/page3')}>Page3</button>
+        <button onClick={() => history.push('/')}>Home</button>
+        <button onClick={() => history.push('/page2')}>Page2</button>
+        <button onClick={() => history.push('/page3')}>Page3</button>
       </NavWrapper>
       <Page1Wrapper>
-        <p>{`Page 1 - global state: 0`}</p>
+        <p>{`Page 1 - global state: ${state.count}`}</p>
       </Page1Wrapper>
       <ButtonWrapper>
-        <button onClick={() => console.log('inc')}>Inc Global</button>
-        <button onClick={() => console.log('dec')}>Dec Global</button>
+        <button onClick={() => dispatch({ type: 'INC', payload: state.count + 1 })}>Inc Global</button>
+        <button onClick={() => dispatch({ type: 'DEC', payload: state.count - 1 })}>Dec Global</button>
       </ButtonWrapper>
       <CountWrapper>
         <Page1Context.Provider value={{ count, setCount }}>

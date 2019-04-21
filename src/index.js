@@ -1,6 +1,5 @@
 import React, { useContext, useReducer } from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
@@ -13,9 +12,9 @@ function StateWrapper({ children }){
   const [state, dispatch] = useReducer(globalReducer, initialState); // use context as the state for the reducer instance
 
   return ( // wrapper component
-      <GlobalContext.Provider value={{ state, dispatch }}>
-        { children }
-      </GlobalContext.Provider>
+    <GlobalContext.Provider value={{ state, dispatch }}>
+      { children }
+    </GlobalContext.Provider>
   )
 }
 
